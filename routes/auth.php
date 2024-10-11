@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\VeiculosController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -59,5 +59,5 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
-Route::get('/form', [FormController::class, 'show'])->name('form.show');
-Route::post('/form', [FormController::class, 'store'])->name('form.store');
+Route::get('/veiculos', [VeiculosController::class, 'show'])->name('veiculos.show');
+Route::post('/veiculos', [VeiculosController::class, 'store'])->name('veiculos.store');
