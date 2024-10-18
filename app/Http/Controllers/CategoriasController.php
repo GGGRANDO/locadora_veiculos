@@ -30,25 +30,21 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        // Validação dos dados recebidos
-        $request->validate([
+        // Validação dos dados
+        $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
-            'ativo' => 'required|string|max:255',
+            'ativo' => 'required|in:S,N',
+        ], [
+            'nome.required' => 'O nome é obrigatório.', 
+            'ativo.required' => 'O campo ativo deve ser preenchido.', 
+            'ativo.in' => 'O valor do campo ativo deve ser Sim (S) ou Não (N).',
         ]);
-    
-        // Criando nova categoria
-        $categoria = new Categoria([
-            'nome' => $request->input('nome'),
-            'ativo' => $request->input('ativo')
-        ]);
-    
-        // Salvando no banco de dados
-        $categoria->save();
-    
-        // Redirecionamento após a criação com uma mensagem de sucesso
-        return redirect()->route('categorias.create')->with('success', 'Categoria criada com sucesso!');
+        
+        Categoria::create($validatedData);
+        
+        return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso!');
     }
-
+    
     /**
      * Display the specified resource.
      */

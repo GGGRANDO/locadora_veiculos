@@ -20,8 +20,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::resource('veiculos',VeiculosController::class);
-
 Route::resource('categorias',CategoriasController::class);
+
 Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
 Route::get('/categorias/show/{id}', [CategoriasController::class, 'show'])->name('categorias.show');
 Route::delete('/categorias/{id}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');

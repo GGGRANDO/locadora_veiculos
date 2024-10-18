@@ -14,23 +14,33 @@
         <div class="border rounded p-4 bg-light mx-auto" style="max-width: 500px;">
             <h1 class="text-center">Criar Novo Registro</h1>
 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('categorias.store') }}" method="POST">
                 @csrf
                 <!-- Token de segurança para proteção contra CSRF -->
 
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" class="form-control" required>
+                    <input type="text" id="nome" name="nome" class="form-control" value="{{ old('nome') }}">
                 </div>
 
                 <div class="form-group">
                     <label>Ativo:</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
-                            <input type="radio" name="ativo" value="S" required> Sim
+                            <input type="radio" name="ativo" value="S" {{ old('ativo') == 'S' ? 'checked' : '' }}> Sim
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="ativo" value="N" required> Não
+                            <input type="radio" name="ativo" value="N" {{ old('ativo') == 'N' ? 'checked' : '' }}> Não
                         </label>
                     </div>
                 </div>
