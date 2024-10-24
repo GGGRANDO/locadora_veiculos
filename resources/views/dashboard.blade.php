@@ -1,66 +1,75 @@
 <x-app-layout>
+
     <head>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
         <style>
-            .hero {
-                background-image: url('{{ asset('img/hero-bg.jpg') }}');
-                background-size: cover;
-                color: white;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                position: relative;
-                background-color: #003366;
-            }
+        .hero {
+            background-image: url('{{ asset('img/hero-bg.jpg') }}');
+            background-size: cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-color: #003366;
+        }
 
-            .hero::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
 
-            .section {
-                padding: 60px 0;
-                background-color: #f8f9fa;
-            }
+        .section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
 
-            header {
-                background-color: #000; /* Preto para o cabeçalho */
-                color: white; /* Texto branco */
-            }
+        header {
+            background-color: #000;
+            /* Preto para o cabeçalho */
+            color: white;
+            /* Texto branco */
+        }
 
-            footer {
-                background-color: #000; /* Preto para o rodapé */
-                color: white; /* Texto branco */
-                padding: 20px 0;
-            }
+        footer {
+            background-color: #000;
+            /* Preto para o rodapé */
+            color: white;
+            /* Texto branco */
+            padding: 20px 0;
+        }
 
-            footer a {
-                color: #f8f9fa; /* Branco suave */
-                text-decoration: underline;
-            }
+        footer a {
+            color: #f8f9fa;
+            /* Branco suave */
+            text-decoration: underline;
+        }
 
-            a {
-                color: #32CD32; /* Verde limão */
-            }
+        a {
+            color: #32CD32;
+            /* Verde limão */
+        }
 
-            a:hover {
-                color: #28a745; /* Verde mais escuro */
-            }
+        a:hover {
+            color: #28a745;
+            /* Verde mais escuro */
+        }
         </style>
     </head>
-    
+
     <main role="main">
         <header>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="#">3G Locadora</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -72,14 +81,14 @@
                         </ul>
                         <div class="d-flex">
                             @if (Route::has('login'))
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="btn btn-outline-light">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="btn btn-outline-light">Log in</a>
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="btn btn-outline-light">Register</a>
-                                    @endif
-                                @endauth
+                            @auth
+                            <a href="{{ url('/dashboard') }}" class="btn btn-outline-light">Dashboard</a>
+                            @else
+                            <a href="{{ route('login') }}" class="btn btn-outline-light">Log in</a>
+                            @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn btn-outline-light">Register</a>
+                            @endif
+                            @endauth
                             @endif
                         </div>
                     </div>
@@ -124,7 +133,8 @@
                 <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <p class="lead">"A melhor experiência que já tive com locadoras! Recomendo!" - João Silva</p>
+                            <p class="lead">"A melhor experiência que já tive com locadoras! Recomendo!" - João Silva
+                            </p>
                         </div>
                         <div class="carousel-item">
                             <p class="lead">"Serviço excelente e veículos em ótimo estado!" - Maria Oliveira</p>
@@ -133,11 +143,13 @@
                             <p class="lead">"Sempre minha primeira escolha para locação!" - Carlos Souza</p>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -155,7 +167,7 @@
             </div>
         </footer>
     </main>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
