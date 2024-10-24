@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Acessorio extends Model
 {
-    protected $table = 'acessorios'; // Corrigido para uma string
+    protected $table = 'acessorios'; 
     protected $fillable = ['nome', 'ativo'];
 
-    // Se a chave primária não for "id", você pode definir assim:
-    // protected $primaryKey = 'sua_chave_primaria';
 }

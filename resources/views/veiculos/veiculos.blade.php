@@ -81,12 +81,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Atualiza o valor do campo "seminovo" baseado no estado do toggle
         document.getElementById('seminovoToggle').addEventListener('change', function() {
             document.querySelector('input[name="seminovo"]').value = this.checked ? 'S' : 'N';
         });
 
-        // Atualiza o valor do campo "ativo" baseado no estado do toggle
         document.getElementById('ativoToggle').addEventListener('change', function() {
             document.querySelector('input[name="ativo"]').value = this.checked ? 'S' : 'N';
         });

@@ -30,27 +30,27 @@
             }
 
             header {
-                background-color: #000; /* Preto para o cabeçalho */
-                color: white; /* Texto branco */
+                background-color: #000; 
+                color: white; 
             }
 
             footer {
-                background-color: #000; /* Preto para o rodapé */
-                color: white; /* Texto branco */
+                background-color: #000; 
+                color: white;
                 padding: 20px 0;
             }
 
             footer a {
-                color: #f8f9fa; /* Branco suave */
+                color: #f8f9fa; 
                 text-decoration: underline;
             }
 
             a {
-                color: #32CD32; /* Verde limão */
+                color: #32CD32; 
             }
 
             a:hover {
-                color: #28a745; /* Verde mais escuro */
+                color: #28a745; 
             }
         </style>
     </head>
@@ -88,7 +88,7 @@
         </header>
 
         <section class="hero">
-            <div class="overlay"></div> <!-- Overlay para melhorar a visibilidade -->
+            <div class="overlay"></div> 
             <div class="container">
                 <h1 class="display-4">Bem-vindo à 3G Locadora</h1>
                 <p class="lead">A melhor solução para suas necessidades de locação de veículos.</p>
