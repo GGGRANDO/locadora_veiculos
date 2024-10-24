@@ -13,6 +13,12 @@
     <div class="container mt-5">
         <h1 class="text-center">Bem-vindo à Página Inicial</h1>
         <h2 class="mt-4">Categorias</h2>
+
+        <!-- Botão para criar nova categoria -->
+        <div class="mb-3">
+            <a href="{{ route('categorias.create') }}" class="btn btn-success">Criar Nova Categoria</a>
+        </div>
+
         <table class="table table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -24,20 +30,23 @@
             </thead>
             <tbody>
                 @foreach($categorias as $categoria)
-                    <tr>
-                        <td>{{ $categoria->id }}</td>
-                        <td>{{ $categoria->nome }}</td>
-                        <td>{{ $categoria->ativo == 'S' ? 'Sim' : 'Não' }}</td> <!-- Ajuste aqui -->
-                        <td>
-                            <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-info btn-sm">Visualizar</a>
-                            <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $categoria->id }}</td>
+                    <td>{{ $categoria->nome }}</td>
+                    <td>{{ $categoria->ativo == 'S' ? 'Sim' : 'Não' }}</td>
+                    <td>
+                        <a href="{{ route('categorias.show', $categoria->id) }}"
+                            class="btn btn-info btn-sm">Visualizar</a>
+                        <a href="{{ route('categorias.edit', $categoria->id) }}"
+                            class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST"
+                            style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
