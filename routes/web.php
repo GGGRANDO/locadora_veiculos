@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\VeiculosController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\AcessoriosController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +22,16 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('veiculos',VeiculosController::class);
 Route::resource('categorias',CategoriasController::class);
+Route::resource('acessorios',AcessoriosController::class);
 
 Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
 Route::get('/categorias/show/{id}', [CategoriasController::class, 'show'])->name('categorias.show');
 Route::delete('/categorias/{id}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
+
+Route::get('/acessorios/edit/{id}', [AcessoriosController::class, 'edit'])->name('acessorios.edit');
+Route::get('/acessorios/show/{id}', [AcessoriosController::class, 'show'])->name('acessorios.show');
+Route::delete('/acessorios/{id}', [AcessoriosController::class, 'destroy'])->name('acessorios.destroy');
+
 
 
 Route::view('inicial','inicial')

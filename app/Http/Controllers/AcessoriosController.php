@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Veiculo;
+use App\Models\Acessorio;
 
 
 use Illuminate\Http\Request;
 
-class VeiculosController extends Controller
+class AcessoriosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $veiculos = Veiculo::all();
-        return view('veiculos.index', compact('veiculos'));
+        $acessorios = Acessorio::all();
+        return view('acessorios.index', compact('acessorios'));
     }
 
     /**
@@ -22,7 +22,7 @@ class VeiculosController extends Controller
      */
     public function create()
     {
-        return view('veiculos.create');
+        return view('acessorios.create');
     }
 
     /**
@@ -33,20 +33,16 @@ class VeiculosController extends Controller
         // Validação dos dados
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
-            'locacao' => 'required|in:S,N',
-            'seminovo' => 'required|in:S,N',
             'ativo' => 'required|in:S,N',
-            'categoria' => 'required|in:S,N',
-            'acessorio' => 'required|in:S,N',
         ], [
             'nome.required' => 'O nome é obrigatório.', 
             'ativo.required' => 'O campo ativo deve ser preenchido.', 
             'ativo.in' => 'O valor do campo ativo deve ser Sim (S) ou Não (N).',
         ]);
         
-        Veiculo::create($validatedData);
+        Acessorio::create($validatedData);
         
-        return redirect()->route('veiculos.index')->with('success', 'Veiculo criado com sucesso!');
+        return redirect()->route('acessorios.index')->with('success', 'Acessorio criada com sucesso!');
     }
     
     /**
@@ -54,14 +50,14 @@ class VeiculosController extends Controller
      */
     public function show($id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        return view('veiculos.show', compact('veiculo'));
+        $acessorio = Acessorio::findOrFail($id);
+        return view('acessorios.show', compact('acessorio'));
     }
 
     public function edit($id)
     {
-        $veiculos = Veiculo::find($id);
-        return view('veiculos.edit', compact('veiculos'));
+        $acessorios = Acessorio::find($id);
+        return view('acessorios.edit', compact('acessorios'));
     }
 
     /**
@@ -69,13 +65,13 @@ class VeiculosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        $veiculo->nome = $request->input('nome');
-        $veiculo->ativo = $request->input('ativo');
+        $acessorio = Acessorio::findOrFail($id);
+        $acessorio->nome = $request->input('nome');
+        $acessorio->ativo = $request->input('ativo');
         
-        $veiculo->save();
+        $acessorio->save();
 
-        return redirect()->route('veiculos.index');
+        return redirect()->route('acessorios.index');
     }
 
     /**
@@ -83,8 +79,8 @@ class VeiculosController extends Controller
      */
     public function destroy($id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        $veiculo->delete();
-        return redirect()->route('veiculos.index');
+        $acessorio = Acessorio::findOrFail($id);
+        $acessorio->delete();
+        return redirect()->route('acessorios.index');
     }
 }
