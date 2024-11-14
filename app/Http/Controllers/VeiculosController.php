@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
 use App\Models\Veiculo;
-
-
 use Illuminate\Http\Request;
 
 class VeiculosController extends Controller
@@ -13,7 +13,8 @@ class VeiculosController extends Controller
      */
     public function index()
     {
-        $veiculos = Veiculo::all();
+        $veiculos = Veiculo::All();
+
         return view('veiculos.index', compact('veiculos'));
     }
 
@@ -30,61 +31,59 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
-        // Validação dos dados
+        // Validação dos dados recebidos da requisição
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
-            'locacao' => 'required|in:S,N',
-            'seminovo' => 'required|in:S,N',
-            'ativo' => 'required|in:S,N',
-            'categoria' => 'required|in:S,N',
-            'acessorio' => 'required|in:S,N',
+            'locacao' => 'required|boolean',  // Supondo que seja um campo booleano
+            'seminovo' => 'required|boolean', // Supondo que seja um campo booleano
+            'ativo' => 'required|in:S,N',  // Apenas valores 'S' ou 'N'
+            'categoria_id' => 'required|exists:categorias,id',  // Verifica se o id da categoria existe
+            'acessorio_id' => 'required|exists:acessorios,id',  // Verifica se o id do acessório existe
         ], [
-            'nome.required' => 'O nome é obrigatório.', 
-            'ativo.required' => 'O campo ativo deve ser preenchido.', 
-            'ativo.in' => 'O valor do campo ativo deve ser Sim (S) ou Não (N).',
+            'nome.required' => 'O nome é obrigatório.',
+            'locacao.required' => 'O campo locação é obrigatório.',
+            'seminovo.required' => 'O campo seminovo é obrigatório.',
+            'ativo.required' => 'O campo ativo é obrigatório.',
+            'categoria_id.required' => 'A categoria é obrigatória.',
+            'acessorio_id.required' => 'O acessório é obrigatório.',
         ]);
-        
-        Veiculo::create($validatedData);
-        
-        return redirect()->route('veiculos.index')->with('success', 'Veiculo criado com sucesso!');
-    }
     
+        // Criação do novo veículo com os dados validados
+        Veiculo::create($validatedData);
+    
+        // Redirecionamento para a página de índice com mensagem de sucesso
+        return redirect()->route('veiculos.index')->with('success', 'Veículo criado com sucesso!');
+    }
+
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        return view('veiculos.show', compact('veiculo'));
+        //
     }
 
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        $veiculos = Veiculo::find($id);
-        return view('veiculos.edit', compact('veiculos'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        $veiculo->nome = $request->input('nome');
-        $veiculo->ativo = $request->input('ativo');
-        
-        $veiculo->save();
-
-        return redirect()->route('veiculos.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $veiculo = Veiculo::findOrFail($id);
-        $veiculo->delete();
-        return redirect()->route('veiculos.index');
+        //
     }
 }
