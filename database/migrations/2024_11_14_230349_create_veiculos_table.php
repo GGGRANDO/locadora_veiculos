@@ -13,15 +13,7 @@ return new class extends Migration
     {
         Schema::create('veiculos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->decimal('valor_locacao', 10, 2);  // Usando decimal para valores monetários
-            $table->boolean('seminovo');  // Alterando para booleano
-            $table->boolean('ativo');  // Alterando para booleano
-            $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
-
-            // Chaves estrangeiras
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 

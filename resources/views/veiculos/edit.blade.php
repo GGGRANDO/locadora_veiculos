@@ -11,32 +11,74 @@
 <body>
     <div class="container mt-5">
         <div class="border rounded p-4 bg-light mx-auto" style="max-width: 500px;">
-            <h1 class="text-center">Editar Registro</h1>
+            <h1 class="text-center">Editar Veículo</h1>
 
-            <form method="POST" action="{{ route('veiculos.update', $veiculos->id) }}">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form action="{{ route('veiculos.update', $veiculo->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
+                <!-- Campo Nome -->
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="{{ old('nome', $veiculos->nome) }}"
-                        class="form-control" required>
+                    <input type="text" id="nome" name="nome" class="form-control" value="{{ old('nome', $veiculo->nome) }}" required>
                 </div>
 
+                <!-- Campo Locação -->
                 <div class="form-group">
-                    <label>Ativo:</label>
+                    <label for="locacao">Locação:</label>
+                    <input type="text" id="locacao" name="locacao" class="form-control" value="{{ old('locacao', $veiculo->locacao) }}" required>
+                </div>
+
+                <!-- Campo Seminovo -->
+                <div class="form-group">
+                    <label>Seminovo:</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary {{ old('ativo', $veiculos->ativo) == 'S' ? 'active' : '' }}">
-                            <input type="radio" name="ativo" value="S"
-                                {{ old('ativo', $veiculos->ativo) == 'S' ? 'checked' : '' }} required> Sim
+                        <label class="btn btn-secondary {{ old('seminovo', $veiculo->seminovo) == 'S' ? 'active' : '' }}">
+                            <input type="radio" name="seminovo" value="S" {{ old('seminovo', $veiculo->seminovo) == 'S' ? 'checked' : '' }}> Sim
                         </label>
-                        <label class="btn btn-secondary {{ old('ativo', $veiculos->ativo) == 'N' ? 'active' : '' }}">
-                            <input type="radio" name="ativo" value="N"
-                                {{ old('ativo', $veiculos->ativo) == 'N' ? 'checked' : '' }} required> Não
+                        <label class="btn btn-secondary {{ old('seminovo', $veiculo->seminovo) == 'N' ? 'active' : '' }}">
+                            <input type="radio" name="seminovo" value="N" {{ old('seminovo', $veiculo->seminovo) == 'N' ? 'checked' : '' }}> Não
                         </label>
                     </div>
                 </div>
 
+                <!-- Campo Ativo -->
+                <div class="form-group">
+                    <label>Ativo:</label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary {{ old('ativo', $veiculo->ativo) == 'S' ? 'active' : '' }}">
+                            <input type="radio" name="ativo" value="S" {{ old('ativo', $veiculo->ativo) == 'S' ? 'checked' : '' }}> Sim
+                        </label>
+                        <label class="btn btn-secondary {{ old('ativo', $veiculo->ativo) == 'N' ? 'active' : '' }}">
+                            <input type="radio" name="ativo" value="N" {{ old('ativo', $veiculo->ativo) == 'N' ? 'checked' : '' }}> Não
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Campo Categoria -->
+                <div class="form-group">
+                    <label for="categoria_id">Categoria:</label>
+                    <select id="categoria_id" name="categoria_id" class="form-control">
+                        <option value="" disabled {{ old('categoria_id', $veiculo->categoria_id) == '' ? 'selected' : '' }}>Selecione uma Categoria</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}" {{ old('categoria_id', $veiculo->categoria_id) == $categoria->id ? 'selected' : '' }}>
+                                {{ $categoria->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Botão de Submissão -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>

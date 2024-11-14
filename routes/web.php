@@ -1,45 +1,35 @@
 <?php
+
 use App\Http\Controllers\VeiculosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\AcessoriosController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Página inicial
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard (requere autenticação)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Rotas de perfil (necessitam de autenticação)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+// Rotas para os recursos (CRUD de Veículos, Categorias e Acessórios)
 Route::resource('veiculos', VeiculosController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('acessorios', AcessoriosController::class);
 
+// Rota estática
+Route::view('inicial', 'inicial')->name('inicial');
 
-Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
-Route::get('/categorias/show/{id}', [CategoriasController::class, 'show'])->name('categorias.show');
-Route::delete('/categorias/{id}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
-
-Route::get('/veiculos/edit/{id}', [VeiculosController::class, 'edit'])->name('veiculos.edit');
-Route::get('/veiculos/show/{id}', [VeiculosController::class, 'show'])->name('veiculos.show');
-Route::delete('/veiculos/{id}', [VeiculosController::class, 'destroy'])->name('veiculos.destroy');
-
-Route::get('/acessorios/edit/{id}', [AcessoriosController::class, 'edit'])->name('acessorios.edit');
-Route::get('/acessorios/show/{id}', [AcessoriosController::class, 'show'])->name('acessorios.show');
-Route::delete('/acessorios/{id}', [AcessoriosController::class, 'destroy'])->name('acessorios.destroy');
-
-
-
-Route::view('inicial','inicial')
-->name('inicial');
-
+// Autenticação
 require __DIR__.'/auth.php';

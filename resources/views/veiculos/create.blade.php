@@ -37,11 +37,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="seminovo">Seminovo:</label>
-                    <select id="seminovo" name="seminovo" class="form-control">
-                        <option value="S" {{ old('seminovo') == 'S' ? 'selected' : '' }}>Sim</option>
-                        <option value="N" {{ old('seminovo') == 'N' ? 'selected' : '' }}>Não</option>
-                    </select>
+                    <label>Seminovo:</label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="seminovo" value="S" {{ old('seminovo') == 'S' ? 'checked' : '' }}> Sim
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="seminovo" value="N" {{ old('seminovo') == 'N' ? 'checked' : '' }}> Não
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -54,6 +58,19 @@
                             <input type="radio" name="ativo" value="N" {{ old('ativo') == 'N' ? 'checked' : '' }}> Não
                         </label>
                     </div>
+                </div>
+
+                <!-- Campo Categoria -->
+                <div class="form-group">
+                    <label for="categoria_id">Categoria:</label>
+                    <select id="categoria_id" name="categoria_id" class="form-control">
+                        <option value="" disabled selected>Selecione uma Categoria</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                                {{ $categoria->nome }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="text-center">
