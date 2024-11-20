@@ -30,11 +30,6 @@
             background-color: #f8f9fa;
         }
 
-        header {
-            background-color: #000;
-            color: white;
-        }
-
         footer {
             background-color: #000;
             color: white;
@@ -53,12 +48,49 @@
         a:hover {
             color: #28a745;
         }
+
+        /* Navbar Custom Styling */
+        .navbar {
+            background-color: #000 !important;
+            /* Black background for navbar */
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            /* White text for links */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            /* Retirei o efeito verde no hover, deixando a cor branca mesmo */
+        }
+
+        .btn-outline-light {
+            color: white !important;
+            /* Button text color */
+            border-color: white !important;
+        }
+
+        .btn-outline-light:hover {
+            color: #000 !important;
+            background-color: white !important;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            background-color: #fff;
+        }
         </style>
     </head>
 
     <main role="main">
+        <!-- Header com navegação (igual ao anterior) -->
         <header>
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="#">3G Locadora</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -90,67 +122,35 @@
             </nav>
         </header>
 
-        <section class="hero">
-            <div class="overlay"></div>
-            <div class="container">
-                <h1 class="display-4">Bem-vindo à 3G Locadora</h1>
-                <p class="lead">A melhor solução para suas necessidades de locação de veículos.</p>
-                <a href="#" class="btn btn-primary btn-lg">Explore Nossos Veículos</a>
-                <a href="#" class="btn btn-light btn-lg">Locação Rápida</a>
-            </div>
-        </section>
-
-
+        <!-- Seção de veículos para locação -->
         <section class="section text-center">
             <div class="container">
-                <h2 class="mb-4">Por que escolher a 3G Locadora?</h2>
+                <h2 class="mb-4">Nossos Veículos para Locação</h2>
                 <div class="row">
-                    <div class="col-md-4">
-                        <h4>Frota Diversificada</h4>
-                        <p>Desde carros compactos até SUVs luxuosos, temos o veículo ideal para você.</p>
+                    @foreach($veiculos as $veiculo)
+                    <!-- Envolvendo o cartão do veículo com o link -->
+                    <div class="col-md-4 mb-4">
+                        <a href="{{ url('/veiculo/' . $veiculo->id) }}" class="card text-decoration-none">
+                            <div class="card">
+                                <!-- Imagem do veículo -->
+                                <img src="{{ asset('img/veiculo.jpg') }}" class="card-img-top"
+                                    alt="{{ $veiculo->nome }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $veiculo->nome }}</h5>
+                                    <p class="card-text">Preço de locação: R$
+                                        {{ number_format($veiculo->valor_locacao, 2, ',', '.') }}</p>
+                                    <!-- Botão de locação -->
+                                    <button class="btn btn-primary">Locar agora</button>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-4">
-                        <h4>Preços Competitivos</h4>
-                        <p>Oferecemos os melhores preços do mercado sem comprometer a qualidade.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>Atendimento 24h</h4>
-                        <p>Estamos disponíveis 24 horas para garantir sua satisfação.</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
 
-        <section class="section text-center">
-            <div class="container">
-                <h2 class="mb-4">Testemunhos de Clientes</h2>
-                <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <p class="lead">"A melhor experiência que já tive com locadoras! Recomendo!" - João Silva
-                            </p>
-                        </div>
-                        <div class="carousel-item">
-                            <p class="lead">"Serviço excelente e veículos em ótimo estado!" - Maria Oliveira</p>
-                        </div>
-                        <div class="carousel-item">
-                            <p class="lead">"Sempre minha primeira escolha para locação!" - Carlos Souza</p>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
+        <!-- Footer -->
         <footer class="text-center py-4">
             <div class="container">
                 <p>&copy; {{ date('Y') }} 3G Locadora. Todos os direitos reservados.</p>

@@ -11,18 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('veiculos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->decimal('valor_locacao', 10, 2);  // Usando decimal para valores monetários
-            $table->boolean('seminovo');  // Alterando para booleano
-            $table->boolean('ativo');  // Alterando para booleano
-            $table->unsignedBigInteger('categoria_id');
-            $table->timestamps();
+        // Verifica se a tabela já existe
+        if (!Schema::hasTable('veiculos')) {
+            Schema::create('veiculos', function (Blueprint $table) {
+                $table->id();
+                $table->string('nome');
+                $table->decimal('valor_locacao', 10, 2); 
+                $table->string('seminovo'); 
+                $table->string('locacao'); 
+                $table->string('ativo'); 
+                $table->unsignedBigInteger('categoria_id');
+                $table->timestamps();
 
-            // Chaves estrangeiras
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
-        });
+                // Chave estrangeira
+                $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            });
+        }
     }
 
     /**

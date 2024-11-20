@@ -58,6 +58,3 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
-
-Route::get('/veiculos', [VeiculosController::class, 'show'])->name('veiculos.show');
-Route::post('/veiculos', [VeiculosController::class, 'store'])->name('veiculos.store');
