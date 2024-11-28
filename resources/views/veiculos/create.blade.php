@@ -46,6 +46,8 @@
                         @endforeach
                     </select>
                 </div>
+
+                <!-- Ajuste na seleção de Acessórios -->
                 <div class="form-group">
                     <label for="acessorios">Acessórios:</label>
                     <select id="acessorios" name="acessorios[]" class="form-control" multiple>
@@ -56,9 +58,10 @@
                         </option>
                         @endforeach
                     </select>
+                    <small class="form-text text-muted">Segure a tecla Ctrl (Windows) ou Command (Mac) para selecionar
+                        múltiplos.</small>
                 </div>
 
-                <!-- Campo para Upload de Imagens (Bootstrap Custom File) -->
                 <div class="form-group">
                     <label for="imagens">Imagens:</label>
                     <div class="custom-file">
@@ -82,7 +85,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Locacao:</label>
+                    <label>Locação:</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary">
                             <input type="radio" name="locacao" value="S" {{ old('locacao') == 'S' ? 'checked' : '' }}>

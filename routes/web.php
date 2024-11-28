@@ -35,7 +35,8 @@ Route::resource('veiculos', VeiculosController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('acessorios', AcessoriosController::class);
 
-Route::view('inicial', 'inicial')->name('inicial');
+Route::view('sobre-nos', 'sobre-nos')->name('sobre-nos');
+
 Route::get('/locacao', function () {
     $veiculos = DB::table('veiculos')
                   ->where('ativo', 'S')

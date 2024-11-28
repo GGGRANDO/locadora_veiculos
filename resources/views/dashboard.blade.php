@@ -67,8 +67,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Sobre Nós</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/dashboard">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/sobre-nos">Sobre Nós</a></li>
                             <li class="nav-item"><a class="nav-link text-light" href="/locacao">Locação</a>
                             </li>
                             <li class="nav-item"><a class="nav-link text-light" href="/seminovos">Seminovos</a></li>

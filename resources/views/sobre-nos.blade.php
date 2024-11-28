@@ -81,7 +81,6 @@
         }
         </style>
     </head>
-
     <main role="main">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -115,26 +114,71 @@
             </nav>
         </header>
 
+        <section class="hero">
+            <div class="container">
+                <h1>Sobre a 3G Locadora</h1>
+                <p>Qualidade, confiança e experiência em locação de veículos</p>
+            </div>
+        </section>
+
         <section class="section text-center">
             <div class="container">
-                <h2 class="mb-4">Nossos Veículos Seminovos para Venda</h2>
+                <h2 class="mb-4">Nossa História</h2>
+                <p class="lead">
+                    A 3G Locadora é uma empresa comprometida em oferecer a melhor experiência de locação de veículos.
+                    Fundada em 2010, nossa missão sempre foi garantir que cada cliente tenha a liberdade de viajar com
+                    conforto,
+                    segurança e a certeza de que está fazendo uma escolha inteligente. Nosso portfólio de veículos
+                    é constantemente atualizado para garantir que nossos clientes sempre encontrem a melhor opção para
+                    suas necessidades.
+                </p>
                 <div class="row">
-                    @foreach($veiculos as $veiculo)
-                    <div class="col-md-4 mb-4">
-                        <a href="{{ url('/veiculo/' . $veiculo->id) }}" class="card text-decoration-none">
-                            <div class="card">
-                                <img src="{{ asset('storage/images/' . $veiculo->imagem) }}" class="card-img-top"
-                                    alt="{{ $veiculo->nome }}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $veiculo->nome }}</h5>
-                                    <p class="card-text">Preço de locação: R$
-                                        {{ number_format($veiculo->valor_locacao, 2, ',', '.') }}</p>
-                                    <button class="btn btn-primary">Locar agora</button>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="col-md-6">
+                        <h3>Missão</h3>
+                        <p>
+                            Proporcionar a melhor experiência de locação, com serviços de alta qualidade e um
+                            atendimento personalizado,
+                            superando as expectativas dos nossos clientes em todos os aspectos.
+                        </p>
                     </div>
-                    @endforeach
+                    <div class="col-md-6">
+                        <h3>Visão</h3>
+                        <p>
+                            Ser a locadora de veículos mais confiável e inovadora do mercado, reconhecida pela
+                            excelência no atendimento
+                            e pela ampla gama de veículos disponíveis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-light text-center">
+            <div class="container">
+                <h2 class="mb-4">Nossa Equipe</h2>
+                <p class="lead">
+                    A equipe da 3G Locadora é composta por profissionais altamente qualificados, com um compromisso
+                    profundo com a
+                    satisfação dos nossos clientes. Desde a manutenção dos nossos veículos até o atendimento, nossa
+                    equipe está
+                    sempre pronta para oferecer um serviço de primeira qualidade.
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://via.placeholder.com/150" class="img-fluid rounded-circle" alt="Equipe 1">
+                        <h5 class="mt-3">João Silva</h5>
+                        <p>Gerente de Operações</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://via.placeholder.com/150" class="img-fluid rounded-circle" alt="Equipe 2">
+                        <h5 class="mt-3">Maria Oliveira</h5>
+                        <p>Coordenadora de Atendimento</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://via.placeholder.com/150" class="img-fluid rounded-circle" alt="Equipe 3">
+                        <h5 class="mt-3">Carlos Pereira</h5>
+                        <p>Supervisor de Manutenção</p>
+                    </div>
                 </div>
             </div>
         </section>

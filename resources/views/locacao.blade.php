@@ -52,22 +52,18 @@
         /* Navbar Custom Styling */
         .navbar {
             background-color: #000 !important;
-            /* Black background for navbar */
         }
 
         .navbar-nav .nav-link {
             color: white !important;
-            /* White text for links */
         }
 
         .navbar-nav .nav-link:hover {
             color: white !important;
-            /* Retirei o efeito verde no hover, deixando a cor branca mesmo */
         }
 
         .btn-outline-light {
             color: white !important;
-            /* Button text color */
             border-color: white !important;
         }
 
@@ -88,7 +84,7 @@
     </head>
 
     <main role="main">
-        <!-- Header com navegação (igual ao anterior) -->
+        <!-- Header com navegação -->
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
@@ -99,10 +95,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Sobre Nós</a></li>
-                            <li class="nav-item"><a class="nav-link text-light" href="/locacao">Locação</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/dashboard">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/sobre-nos">Sobre Nós</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/locacao">Locação</a></li>
                             <li class="nav-item"><a class="nav-link text-light" href="/seminovos">Seminovos</a></li>
                         </ul>
                         <div class="d-flex">
@@ -128,18 +123,16 @@
                 <h2 class="mb-4">Nossos Veículos para Locação</h2>
                 <div class="row">
                     @foreach($veiculos as $veiculo)
-                    <!-- Envolvendo o cartão do veículo com o link -->
                     <div class="col-md-4 mb-4">
                         <a href="{{ url('/veiculo/' . $veiculo->id) }}" class="card text-decoration-none">
                             <div class="card">
                                 <!-- Imagem do veículo -->
-                                <img src="{{ asset('img/veiculo.jpg') }}" class="card-img-top"
+                                <img src="{{ asset('storage/images/' . $veiculo->imagem) }}" class="card-img-top"
                                     alt="{{ $veiculo->nome }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $veiculo->nome }}</h5>
                                     <p class="card-text">Preço de locação: R$
                                         {{ number_format($veiculo->valor_locacao, 2, ',', '.') }}</p>
-                                    <!-- Botão de locação -->
                                     <button class="btn btn-primary">Locar agora</button>
                                 </div>
                             </div>

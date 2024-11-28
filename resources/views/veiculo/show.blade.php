@@ -90,6 +90,28 @@
         .card-text {
             font-size: 1.1rem;
         }
+
+        /* Ajustes para a listagem dos acessórios */
+        .acessorios-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .acessorio-card {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .acessorio-card h6 {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
         </style>
     </head>
 
@@ -105,8 +127,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-light" href="#">Sobre Nós</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/dashboard">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="/sobre-nos">Sobre Nós</a></li>
                             <li class="nav-item"><a class="nav-link text-light" href="/locacao">Locação</a></li>
                             <li class="nav-item"><a class="nav-link text-light" href="/seminovos">Seminovos</a></li>
                         </ul>
@@ -136,7 +158,7 @@
                         <!-- Card com informações do veículo -->
                         <div class="card shadow-lg border-light">
                             <!-- Imagem do veículo -->
-                            <img src="{{ asset('storage/' . $veiculo->imagem) }}" class="card-img-top"
+                            <img src="{{ asset('storage/images/' . $veiculo->imagem) }}" class="card-img-top"
                                 alt="{{ $veiculo->nome }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $veiculo->nome }}</h5>
@@ -150,7 +172,23 @@
                                 <p class="card-text">
                                     <strong>Seminovo:</strong> {{ $veiculo->seminovo == 'S' ? 'Sim' : 'Não' }}
                                 </p>
-                                <a href="#" class="btn btn-primary">Locar agora</a>
+
+                                <!-- Exibindo os acessórios em grid -->
+                                <div class="acessorios-list">
+                                    @forelse ($veiculo->acessorios as $acessorio)
+                                    <div class="acessorio-card">
+                                        <i class="bi bi-check-circle"></i>
+                                        <h6>{{ $acessorio->nome }}</h6>
+                                    </div>
+                                    @empty
+                                    <div class="acessorio-card">
+                                        <h6>Não há acessórios disponíveis para este veículo.</h6>
+                                    </div>
+                                    @endforelse
+                                </div>
+
+                                <a href="https://wa.me/5554996618999" target="_blank" class="btn btn-primary">Locar
+                                    agora</a>
                             </div>
                         </div>
                     </div>
